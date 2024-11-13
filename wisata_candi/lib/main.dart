@@ -19,8 +19,7 @@ class MainApp extends StatelessWidget {
       ),
       home: DetailScreen(
         candi: candiList[0],
-        ),
+      ),
     );
   }
 }
-

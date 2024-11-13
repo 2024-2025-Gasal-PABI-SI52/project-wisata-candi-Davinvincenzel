@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wisata_candi/models/candi.dart';
 
@@ -182,11 +183,48 @@ class DetailScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    SizedBox(),
+                    SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: candi.imageUrls.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: EdgeInsets.only(right: 8),
+                              child: GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                          color: Colors.deepPurple.shade100,
+                                          width: 2,
+                                        )),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: CachedNetworkImage(
+                                        imageUrl: candi.imageUrls[index],
+                                        height: 120,
+                                        width: 120,
+                                        fit: BoxFit.cover,
+                                        placeholder: (context, url) =>
+                                            Container(
+                                          width: 120,
+                                          height: 120,
+                                          color: Colors.deepPurple[50],
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),
+                                    ),
+                                  )));
+                        },
+                      ),
+                    ),
                     const SizedBox(
                       height: 4,
                     ),
-                    const  Text(
+                    const Text(
                       'Tap untuk memperbesar',
                       style: TextStyle(color: Colors.black54),
                     ),

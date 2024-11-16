@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:wisata_candi/screens/signUp_screen.dart';
+import 'package:wisata_candi/screens/signIn_screen.dart';
 
-class SignInScreen extends StatefulWidget {
-  SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   //TODO: 1. Deklarasikan variabel
-
+  final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
 
   String _errorText = '';
@@ -27,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       //TODO: 2.Pasang AppBar
       appBar: AppBar(
-        title: const Text('Sign In'),
+        title: const Text('Sign Up'),
       ),
       //TODO: 3.Pasang Body
       body: Center(
@@ -40,7 +39,20 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //TODO: 5. Buat TextFormField untuk Nama Pengguna
+                //TODO: 5. Buat TextFormField untuk Nama Lengkap
+                TextFormField(
+                  controller: _fullnameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Nama',
+                    hintText: 'Masukkan Nama Lengkap',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+
+                //TODO: 6. Buat TextFormField untuk Nama Pengguna
+                const SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
@@ -49,7 +61,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     border: OutlineInputBorder(),
                   ),
                 ),
-                //TODO: 6. Buat TextFormField untuk Kata Sandi
+
+                //TODO: 7. Buat TextFormField untuk Kata Sandi
                 const SizedBox(
                   height: 20,
                 ),
@@ -75,15 +88,15 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   obscureText: _obscurePassword,
                 ),
-                //TODO: 7. Buat ElevatedButton untuk Sign In
+                //TODO: 8. Buat ElevatedButton untuk Sign Up
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Sign In'),
+                  child: const Text('Sign Up'),
                 ),
-                //TODO: 8. Pasang TextButton untuk Sign Up
+                //TODO: 9. Pasang TextButton untuk Sign In
                 const SizedBox(
                   height: 10,
                 ),
@@ -93,11 +106,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 // ),
                 RichText(
                   text: TextSpan(
-                    text: 'Belum punya akun? ',
+                    text: 'Sudah punya akun? ',
                     style: const TextStyle(color: Colors.deepPurple),
                     children: [
                       TextSpan(
-                        text: 'Daftar di sini',
+                        text: 'Login di sini',
                         style: const TextStyle(
                             fontSize: 16,
                             color: Colors.blue,
@@ -107,7 +120,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return SignUpScreen();
+                                return SignInScreen();
                               }),
                             );
                           },
